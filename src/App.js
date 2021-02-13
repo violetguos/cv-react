@@ -3,8 +3,8 @@ import Info from "./components/Info";
 import Education from "./components/Education";
 import Projects from "./components/Projects";
 class App extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
 
     
   }
