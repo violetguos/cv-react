@@ -20,7 +20,8 @@ const Info = () => {
       <button type="submit">
         Update
       </button>
-    </form>
+      </form>
+      <p>Name: {name}</p>
     </div>
   )
 }
