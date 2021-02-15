@@ -9,29 +9,46 @@ const Info = () => {
   }
   if(editMode){
     return (
-      <section>
-        <h2>Personal Info</h2>
-        <form onSubmit={onSubmit}>
-        <label htmlFor="nameInput">Name</label>
-        <input 
-          onChange={(e)=> setName(e.target.value)}
-          value={name}
-          type="text" 
-          id="nameInput"
-        />
-        <button type="submit">
-          Update
-        </button>
+      <section class="section">
+        <h2 class="title">Personal Info</h2>
+        <form onSubmit={onSubmit} class="box">
+          <div class="field">
+            <label htmlFor="nameInput" class="label">Name</label>
+              <div class="control">
+                <input 
+                  onChange={(e)=> setName(e.target.value)}
+                  value={name}
+                  type="text" 
+                  id="nameInput"
+                  class="input"
+                />
+              </div>
+          </div>
+          <button type="submit" class="button is-primary">
+            Update
+          </button>
         </form>
       </section>
     )
   }
   else{
     return (
-      <section>
-        <h2>Personal Info</h2>
-        <p>Name: {name}</p>
-        <button onClick={onSubmit}>Update</button>
+      <section class="section">
+        <h2 class="title">Personal Info</h2>
+        <div class="card">
+          <div class="card-content">
+            <h3 class="title">
+              {name}
+            </h3>            
+          </div>
+          <footer class="card-footer">
+            <p class="card-footer-item">
+              <span>
+                <button onClick={onSubmit} class="button is-primary">Update</button>
+              </span>
+            </p>
+          </footer>
+        </div>        
       </section>
     )
   }

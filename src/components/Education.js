@@ -18,16 +18,21 @@ class Education extends React.Component {
     }
   
     render() {
-      console.log(this.state.editMode);
       if(this.state.editMode){
         return (
-        <section>
-          <h2>Education</h2>
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              <input type="text" value={this.state.value} onChange={this.handleChange} />
-            </label>
-            <button type="submit">Update</button>
+        <section class="section">
+          <h2 class="title">Education</h2>
+          <form onSubmit={this.handleSubmit} class="box">
+            <div class="field">
+              <label htmlFor="nameInput" class="label">University</label>
+
+              <div class="control">
+
+
+                <input type="text" value={this.state.value} onChange={this.handleChange} class="input"/>
+              </div>
+            </div>
+            <button type="submit" class="button is-primary">Update</button>
           </form>
         </section>
           
@@ -36,9 +41,22 @@ class Education extends React.Component {
       else{
         return (
           <section>
-            <h2>Education</h2>
-            <p>{this.state.value}</p>
-            <button onClick={this.handleSubmit}>Update</button>
+            <h2 class="title">Education</h2>
+            
+            <div class="card">
+              <div class="card-content">
+                <p>
+                  {this.state.value}
+                </p>            
+              </div>
+              <footer class="card-footer">
+                <p class="card-footer-item">
+                  <span>
+                  <button onClick={this.handleSubmit} class="button is-primary">Update</button>
+                  </span>
+                </p>
+              </footer>
+            </div> 
           </section>
         )
       }
