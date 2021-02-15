@@ -12,25 +12,34 @@ class Education extends React.Component {
     handleChange(event) {    this.setState({value: event.target.value});  }
     handleSubmit(event) {
       event.preventDefault();
-      this.setState({editMode: false})
+
+      this.setState({editMode: !this.state.editMode})
+      
     }
   
     render() {
-    
+      console.log(this.state.editMode);
       if(this.state.editMode){
         return (
+        <section>
+          <h2>Education</h2>
           <form onSubmit={this.handleSubmit}>
             <label>
-              Education:
               <input type="text" value={this.state.value} onChange={this.handleChange} />
             </label>
-            <input type="submit" value="Submit" />
+            <button type="submit">Update</button>
           </form>
+        </section>
+          
         );
       }
       else{
         return (
-          <p>{this.state.value}</p>
+          <section>
+            <h2>Education</h2>
+            <p>{this.state.value}</p>
+            <button onClick={this.handleSubmit}>Update</button>
+          </section>
         )
       }
       

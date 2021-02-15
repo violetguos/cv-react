@@ -5,11 +5,12 @@ const Info = () => {
   const [editMode, setEditMode] = useState(true);
   const onSubmit = (e) => {
     e.preventDefault();
-    setEditMode(false);
+    setEditMode(!editMode);
   }
   if(editMode){
     return (
-      <div>
+      <section>
+        <h2>Personal Info</h2>
         <form onSubmit={onSubmit}>
         <label htmlFor="nameInput">Name</label>
         <input 
@@ -22,12 +23,16 @@ const Info = () => {
           Update
         </button>
         </form>
-      </div>
+      </section>
     )
   }
   else{
     return (
-      <p>Name: {name}</p>
+      <section>
+        <h2>Personal Info</h2>
+        <p>Name: {name}</p>
+        <button onClick={onSubmit}>Update</button>
+      </section>
     )
   }
   
