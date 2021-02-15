@@ -2,27 +2,34 @@ import { useState } from 'react'
 
 const Info = () => {
   const [name, setName] = useState('');
+  const [editMode, setEditMode] = useState(true);
   const onSubmit = (e) => {
-    e.preventDefault()
-    console.log(name);
+    e.preventDefault();
+    setEditMode(false);
   }
-
-  return (
-    <div>
-      <form onSubmit={onSubmit}>
-      <label htmlFor="nameInput">Name</label>
-      <input 
-        onChange={(e)=> setName(e.target.value)}
-        value={name}
-        type="text" 
-        id="nameInput"
-      />
-      <button type="submit">
-        Update
-      </button>
-      </form>
+  if(editMode){
+    return (
+      <div>
+        <form onSubmit={onSubmit}>
+        <label htmlFor="nameInput">Name</label>
+        <input 
+          onChange={(e)=> setName(e.target.value)}
+          value={name}
+          type="text" 
+          id="nameInput"
+        />
+        <button type="submit">
+          Update
+        </button>
+        </form>
+      </div>
+    )
+  }
+  else{
+    return (
       <p>Name: {name}</p>
-    </div>
-  )
+    )
+  }
+  
 }
 export default Info;
