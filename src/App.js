@@ -1,7 +1,7 @@
 import React from "react";
 import Info from "./components/Info";
 import Education from "./components/Education";
-import Projects from "./components/Projects";
+import  Projects from "./components/Projects";
 import 'bulma/css/bulma.css'
 import './components/cv.css'
 const App = () => {
@@ -10,11 +10,9 @@ const App = () => {
   return (
     <div class="container">
       
-        <Info />
-     
-
+      <Info />
       <Education />
-      <Projects />
+      {/* <Projects /> */}
     </div>
   )
   

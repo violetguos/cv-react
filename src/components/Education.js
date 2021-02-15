@@ -3,13 +3,22 @@ import React from "react";
 class Education extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {value: '', editMode: true};
+      this.state = {
+        value: '', 
+        degree: '',
+        selfTaught: '',
+        editMode: true
+      };
 
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
     }
   
-    handleChange(event) {    this.setState({value: event.target.value});  }
+    handleChange(event) {       
+      this.setState({
+        [event.target.name]: event.target.value
+      });  
+    }
     handleSubmit(event) {
       event.preventDefault();
 
@@ -24,12 +33,18 @@ class Education extends React.Component {
           <h2 class="title">Education</h2>
           <form onSubmit={this.handleSubmit} class="box">
             <div class="field">
-              <label htmlFor="nameInput" class="label">University</label>
-
               <div class="control">
 
+              <label htmlFor="nameInput" class="label">University</label>
+              <input type="text" value={this.state.value} onChange={this.handleChange} class="input" name="value" />
 
-                <input type="text" value={this.state.value} onChange={this.handleChange} class="input"/>
+              <label htmlFor="nameInput" class="label">Degree</label>
+
+              <input type="text" value={this.state.degree} onChange={this.handleChange} class="input" name="degree"/>
+
+              <label htmlFor="nameInput" class="label">Self taught programs</label>
+
+              <input type="text" value={this.state.selfTaught} onChange={this.handleChange} class="input" name="selfTaught" />
               </div>
             </div>
             <button type="submit" class="button is-primary">Update</button>
@@ -45,9 +60,9 @@ class Education extends React.Component {
             
             <div class="card">
               <div class="card-content">
-                <p>
-                  {this.state.value}
-                </p>            
+                <p>{this.state.value}</p>
+                <p>{this.state.degree}</p> 
+                <p>{this.state.selfTaught}</p>           
               </div>
               <footer class="card-footer">
                 <p class="card-footer-item">
