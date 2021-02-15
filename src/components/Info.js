@@ -9,8 +9,8 @@ const Info = () => {
   }
   if(editMode){
     return (
-      <section class="section">
-        <h2 class="title">Personal Info</h2>
+      <section className="section">
+        <h2 className="title">Personal Info</h2>
         <form onSubmit={onSubmit} class="box">
           <div class="field">
             <label htmlFor="nameInput" class="label">Name</label>

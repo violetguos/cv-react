@@ -60,8 +60,12 @@ class Education extends React.Component {
             
             <div class="card">
               <div class="card-content">
+                
+                <label htmlFor="nameInput" class="label">University</label>
                 <p>{this.state.value}</p>
+                <label htmlFor="nameInput" class="label">Degree</label>
                 <p>{this.state.degree}</p> 
+                <label htmlFor="nameInput" class="label">Self taught programs</label>
                 <p>{this.state.selfTaught}</p>           
               </div>
               <footer class="card-footer">
