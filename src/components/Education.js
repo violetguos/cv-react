@@ -22,14 +22,14 @@ class Education extends React.Component {
     handleSubmit(event) {
       event.preventDefault();
 
-      this.setState({editMode: !this.state.editMode})
+      this.setState({editMode: !this.state.editMode});
       
     }
   
     render() {
       if(this.state.editMode){
         return (
-        <section class="section">
+        <section className="section">
           <h2 class="title">Education</h2>
           <form onSubmit={this.handleSubmit} class="box">
             <div class="field">
@@ -55,7 +55,7 @@ class Education extends React.Component {
       }
       else{
         return (
-          <section>
+          <section class="section">
             <h2 class="title">Education</h2>
             
             <div class="card">
@@ -77,7 +77,7 @@ class Education extends React.Component {
               </footer>
             </div> 
           </section>
-        )
+        );
       }
       
     }
