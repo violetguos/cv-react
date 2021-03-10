@@ -1,4 +1,3 @@
-import { useState } from 'react'; 
 import React from "react";
 
 
@@ -66,7 +65,7 @@ class Projects extends React.Component{
               <label htmlFor="nameInput" class="label">Name</label>
               <p>{this.state.name}</p>
               <label htmlFor="nameInput" class="label">url</label>
-              <p>{this.state.url}</p> 
+              <a href={this.state.url}>{this.state.url}</a>
               <label htmlFor="nameInput" class="label">description</label>
               <p>{this.state.description}</p>           
             </div>
