@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import ProjectCard from "./ProjectCard.js"
 
 // TODO: refactor this to a section of many cards
@@ -8,10 +8,12 @@ class Projects extends React.Component{
     super(props);
     this.state={
       category: [],
-      addCard: false
+      numCards: 0
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleNewCard = this.handleNewCard.bind(this);
+    this.initCards = this.initCards.bind(this);
+
   }
 
   handleChange(event){
@@ -22,22 +24,26 @@ class Projects extends React.Component{
   
   handleNewCard(event){
     event.preventDefault();
-    this.setState({addCard: true});
+    this.setState({numCards: this.state.numCards+1});
   }
 
+  initCards(){
+    let cards = [];
+    for (let i = 0; i < this.state.numCards; i++) {
+      cards.push(<ProjectCard/>)
+    }
+    return cards;
 
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (this.state.addCard && !prevState.addCard) {
-  //     console.log("component");
-  //     //this.setState({addCard: false});
-
-  //   }
-  // }
-
+  }
   render(){
-    if(this.state.addCard){
-      return <ProjectCard />
+    if(this.state.numCards > 0){
+      return (
+        <Fragment>
+          {this.initCards()}
+          <button onClick={this.handleNewCard} className="button is-primary">Add Project</button>
+
+        </Fragment>
+        );
 
     }
     else{
