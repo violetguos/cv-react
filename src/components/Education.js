@@ -30,24 +30,24 @@ class Education extends React.Component {
       if(this.state.editMode){
         return (
         <section className="section">
-          <h2 class="title">Education</h2>
-          <form onSubmit={this.handleSubmit} class="box">
-            <div class="field">
-              <div class="control">
+          <h2 className="title">Education</h2>
+          <form onSubmit={this.handleSubmit} className="box">
+            <div className="field">
+              <div className="control">
 
-              <label htmlFor="nameInput" class="label">University</label>
+              <label htmlFor="nameInput" className="label">University</label>
               <input type="text" value={this.state.value} onChange={this.handleChange} class="input" name="value" />
 
-              <label htmlFor="nameInput" class="label">Degree</label>
+              <label htmlFor="nameInput" className="label">Degree</label>
 
               <input type="text" value={this.state.degree} onChange={this.handleChange} class="input" name="degree"/>
 
-              <label htmlFor="nameInput" class="label">Self taught programs</label>
+              <label htmlFor="nameInput" className="label">Self taught programs</label>
 
               <input type="text" value={this.state.selfTaught} onChange={this.handleChange} class="input" name="selfTaught" />
               </div>
             </div>
-            <button type="submit" class="button is-primary">Update</button>
+            <button type="submit" className="button is-primary">Update</button>
           </form>
         </section>
           

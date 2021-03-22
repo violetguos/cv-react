@@ -1,5 +1,5 @@
 import React from "react";
-
+import ProjectCard from "./ProjectCard.js"
 
 // TODO: refactor this to a section of many cards
 // - make a button to create new cards, perhaps a new class?
@@ -7,15 +7,11 @@ class Projects extends React.Component{
   constructor(props){
     super(props);
     this.state={
-      editMode: true,
-      name: '',
-      url:'',
-      repo:'',
-      description:'',
-      libraries:''
+      category: [],
+      addCard: false
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleNewCard = this.handleNewCard.bind(this);
   }
 
   handleChange(event){
@@ -23,64 +19,35 @@ class Projects extends React.Component{
       [event.target.name]: event.target.value
     });
   }
-  handleSubmit(event){
+  
+  handleNewCard(event){
     event.preventDefault();
-    this.setState({editMode: !this.state.editMode});
+    this.setState({addCard: true});
   }
 
+
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (this.state.addCard && !prevState.addCard) {
+  //     console.log("component");
+  //     //this.setState({addCard: false});
+
+  //   }
+  // }
+
   render(){
-    if(this.state.editMode){
+    if(this.state.addCard){
+      return <ProjectCard />
+
+    }
+    else{
       return (
-        <section class="section">
-          <h2 class="title">Projects</h2>
-          <form onSubmit={this.handleSubmit} class="box">
-            <div class="field">
-              <div class="control">
-
-              <label htmlFor="nameInput" class="label">Name</label>
-              <input type="text" value={this.state.name} onChange={this.handleChange} class="input" name="name" />
-
-              <label htmlFor="nameInput" class="label">url</label>
-
-              <input type="text" value={this.state.url} onChange={this.handleChange} class="input" name="url"/>
-
-              <label htmlFor="nameInput" class="label">description</label>
-
-              <input type="text" value={this.state.description} onChange={this.handleChange} class="input" name="description" />
-              </div>
-            </div>
-            <button type="submit" class="button is-primary">Update</button>
-          </form>
-        </section>
-          
-      );
-    }else{
-      return (
-        <section class="section">
-          <h2 class="title">Education</h2>
-          
-          <div class="card">
-            <div class="card-content">
-              
-              <label htmlFor="nameInput" class="label">Name</label>
-              <p>{this.state.name}</p>
-              <label htmlFor="nameInput" class="label">url</label>
-              <a href={this.state.url}>{this.state.url}</a>
-              <label htmlFor="nameInput" class="label">description</label>
-              <p>{this.state.description}</p>           
-            </div>
-            <footer class="card-footer">
-              <p class="card-footer-item">
-                <span>
-                <button onClick={this.handleSubmit} class="button is-primary">Update</button>
-                </span>
-              </p>
-            </footer>
-          </div> 
-        </section>
+        <button onClick={this.handleNewCard} className="button is-primary">Add Project</button>
       );
     }
   }
+
+
 
 }
 export default Projects;
