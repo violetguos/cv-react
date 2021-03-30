@@ -7,19 +7,11 @@ class Projects extends React.Component{
   constructor(props){
     super(props);
     this.state={
-      category: [],
-      numCards: 0
+      numCards: 0,
+
     };
-    this.handleChange = this.handleChange.bind(this);
     this.handleNewCard = this.handleNewCard.bind(this);
     this.initCards = this.initCards.bind(this);
-
-  }
-
-  handleChange(event){
-    this.setState({
-      [event.target.name]: event.target.value
-    });
   }
   
   handleNewCard(event){
@@ -35,6 +27,7 @@ class Projects extends React.Component{
     return cards;
 
   }
+
   render(){
     if(this.state.numCards > 0){
       return (
