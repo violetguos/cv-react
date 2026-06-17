@@ -1,56 +1,45 @@
-import { useState } from "react";
+import { useState } from 'react'
 
-const Education = () => {
-  const [university, setUniversity] = useState("");
-  const [degree, setDegree] = useState("");
-  const [selfTaught, setSelfTaught] = useState("");
-  const [editMode, setEditMode] = useState(true);
+const Education = ({ university, setUniversity, degree, setDegree, selfTaught, setSelfTaught }) => {
+  const [editMode, setEditMode] = useState(true)
 
   const fields = [
-    {
-      label: "University",
-      key: "university",
-      value: university,
-      onChange: setUniversity,
-    },
-    { label: "Degree", key: "degree", value: degree, onChange: setDegree },
-    {
-      label: "Self Taught",
-      key: "selfTaught",
-      value: selfTaught,
-      onChange: setSelfTaught,
-    },
-  ];
+    { label: 'University', key: 'university', value: university, onChange: setUniversity },
+    { label: 'Degree', key: 'degree', value: degree, onChange: setDegree },
+    { label: 'Self taught programs', key: 'selfTaught', value: selfTaught, onChange: setSelfTaught },
+  ]
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    setEditMode(!editMode);
-  };
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setEditMode(!editMode)
+  }
 
   if (editMode) {
     return (
       <section className="section">
         <h2 className="title">Education</h2>
-        <form onSubmit={onSubmit} className="box">
-          {fields.map((f) => (
-            <div className="field" key={f.key}>
-              <label htmlFor={`${f.key}Input`} className="label">
-                {f.label}
-              </label>
-              <div className="control">
-                <input
-                  id={`${f.key}Input`}
-                  className="input"
-                  type="text"
-                  value={f.value}
-                  onChange={(e) => f.onChange(e.target.value)}
-                />
-              </div>
+        <form onSubmit={handleSubmit} className="box">
+          <div className="field">
+            <div className="control">
+              {fields.map((f) => (
+                <div key={f.key}>
+                  <label htmlFor={`${f.key}Input`} className="label">{f.label}</label>
+                  <input
+                    id={`${f.key}Input`}
+                    type="text"
+                    value={f.value}
+                    onChange={(e) => f.onChange(e.target.value)}
+                    className="input"
+                    name={f.key}
+                  />
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+          <button type="submit" className="button is-primary">Update</button>
         </form>
       </section>
-    );
+    )
   }
 
   return (
@@ -68,15 +57,13 @@ const Education = () => {
         <footer className="card-footer">
           <p className="card-footer-item">
             <span>
-              <button onClick={onSubmit} className="button is-primary">
-                Update
-              </button>
+              <button onClick={handleSubmit} className="button is-primary">Update</button>
             </span>
           </p>
         </footer>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Education;
+export default Education
