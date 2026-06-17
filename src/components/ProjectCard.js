@@ -1,92 +1,88 @@
-import React from "react";
+import { useState } from "react";
 
+const ProjectCard = () => {
+  const [name, setName] = useState("");
+  const [url, setUrl] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
+  const [editMode, setEditMode] = useState("");
 
-// TODO: refactor this to a section of many cards
-// - make a button to create new cards, perhaps a new class?
-class ProjectCard extends React.Component{
-  constructor(props){
-    super(props);
-    this.state={
-      editMode: true,
-      name: '',
-      url:'',
-      repo:'',
-      description:'',
-      category:'',
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  const fields = [
+    { label: "Name", key: "name", value: name, onChange: setName },
+    { label: "URL", key: "url", value: url, onChange: setUrl },
+    {
+      label: "Description",
+      key: "description",
+      value: description,
+      onChange: setDescription,
+    },
+    {
+      label: "Category",
+      key: "category",
+      value: category,
+      onChange: setCategory,
+    },
+  ];
+  const onSubmit = (e) => {
+    e.preventDefault();
+    setEditMode(!editMode);
+  };
 
-  handleChange(event){
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-  }
-  handleSubmit(event){
-    event.preventDefault();
-    this.setState({editMode: !this.state.editMode});
-  }
-
-  handleTag(event){
-    event.preventDefault();
-    this.setState({editMode: !this.state.editMode});
-
-  }
-
-  render(){
-    if(this.state.editMode){
-      return (
-        <section className="section">
-          <h2 className="title">Projects</h2>
-          <form onSubmit={this.handleSubmit} className="box">
-            <div className="field">
+  if (editMode) {
+    return (
+      <section className="section">
+        <h2 className="title">Projects</h2>
+        <form onSubmit={onSubmit} className="box">
+          {fields.map((f) => (
+            <div className="field" key={f.key}>
+              <label htmlFor={`${f.key}Input`} className="label">
+                {f.label}
+              </label>
               <div className="control">
-
-              <label htmlFor="nameInput" className="label">Name</label>
-              <input type="text" value={this.state.name} onChange={this.handleChange} className="input" name="name" />
-
-              <label htmlFor="nameInput" className="label">url</label>
-
-              <input type="text" value={this.state.url} onChange={this.handleChange} className="input" name="url"/>
-
-              <label htmlFor="nameInput" className="label">description</label>
-
-              <input type="text" value={this.state.description} onChange={this.handleChange} className="input" name="description" />
+                <input
+                  id={`${f.key}Input`}
+                  className="input"
+                  type="text"
+                  value={f.value}
+                  onChange={(e) => f.onChange(e.target.value)}
+                />
               </div>
             </div>
-            <button type="submit" className="button is-primary">Update</button>
-          </form>
-        </section>
-          
-      );
-    }else{
-      return (
-        <section className="section">
-          <h2 className="title">Projects</h2>
-          
-          <div className="card">
-            <div className="card-content">
-              
-              <label htmlFor="nameInput" className="label">Name</label>
-              <p>{this.state.name}</p>
-              <label htmlFor="nameInput" className="label">url</label>
-              <a href={this.state.url}>{this.state.url}</a>
-              <label htmlFor="nameInput" className="label">description</label>
-              <p>{this.state.description}</p>           
-            </div>
-            <footer className="card-footer">
-              <p className="card-footer-item">
-                <span>
-                <button onClick={this.handleSubmit} className="button is-primary">Update</button>
-                </span>
-              </p>
-            </footer>
-          </div> 
-        </section>
-      );
-    }
+          ))}
+
+          <button type="submit" className="button is-primary">
+            Update
+          </button>
+        </form>
+      </section>
+    );
   }
 
-}
+  return (
+    <section className="section">
+      <h2 className="title">Projects</h2>
+
+      <div className="card">
+        <div className="card-content">
+          {fields.map((f) => (
+            <div key={f.key}>
+              <label className="label">{f.label}</label>
+              <p>{f.value}</p>
+            </div>
+          ))}
+        </div>
+        <footer className="card-footer">
+          <p className="card-footer-item">
+            <span>
+              <button onClick={onSubmit} className="button is-primary">
+                Update
+              </button>
+            </span>
+          </p>
+        </footer>
+      </div>
+    </section>
+  );
+};
+
 export default ProjectCard;
