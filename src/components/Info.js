@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
-const Info = () => {
-  const [name, setName] = useState('')
+const Info = ({ name, setName }) => {
   const [editMode, setEditMode] = useState(true)
 
   const fields = [
